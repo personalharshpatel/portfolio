@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harsh Patel | Web & Flutter Developer Portfolio</title>
+    <!-- Meta Descriptions for SEO -->
+    <meta name="description" content="Welcome to the professional portfolio of Harsh Patel, a dedicated web and mobile application developer. Explore projects in PHP, ASP.NET, Flutter, and web technologies.">
+    <meta name="keywords" content="Harsh Patel, Portfolio, Web Developer, PHP Developer, Flutter Developer, ASP.NET, Kadi Sarva Vishwavidyalaya, Web Application Development">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme" data-accent="cyberpunk" data-bg-type="particles">
+
+    <!-- Interactive Canvas Background -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Theme Customizer Panel -->
+    <div class="config-panel" id="configPanel">
+        <button class="config-toggle" id="configToggle" aria-label="Toggle settings panel">
+            <i class="fa-solid fa-gear"></i>
+        </button>
+        <div class="config-content">
+            <h3>Theme Customizer</h3>
+            
+            <div class="config-section">
+                <h4>Color Mode</h4>
+                <div class="theme-switch-wrapper">
+                    <button class="theme-switch-btn active" id="darkModeBtn" title="Dark Mode">
+                        <i class="fa-solid fa-moon"></i> Dark
+                    </button>
+                    <button class="theme-switch-btn" id="lightModeBtn" title="Light Mode">
+                        <i class="fa-solid fa-sun"></i> Light
+                    </button>
+                </div>
+            </div>
+
+            <div class="config-section">
+                <h4>Accent Color</h4>
+                <div class="accent-selector">
+                    <button class="accent-dot cyberpunk active" data-accent="cyberpunk" title="Cyberpunk Purple"></button>
+                    <button class="accent-dot emerald" data-accent="emerald" title="Emerald Aurora"></button>
+                    <button class="accent-dot sunset" data-accent="sunset" title="Sunset Gold"></button>
+                    <button class="accent-dot ice" data-accent="ice" title="Ice Teal"></button>
+                </div>
+            </div>
+
+            <div class="config-section">
+                <h4>Background Effect</h4>
+                <div class="bg-switch-wrapper">
+                    <button class="bg-switch-btn active" id="particlesBgBtn">
+                        <i class="fa-solid fa-circle-nodes"></i> Particles
+                    </button>
+                    <button class="bg-switch-btn" id="gradientBgBtn">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Aurora Glow
+                    </button>
+                </div>
+            </div>
+
+            <div class="config-section">
+                <h4>Content Editor</h4>
+                <button class="theme-switch-btn" id="enableEditModeBtn" style="width: 100%; border-radius: 8px;">
+                    <i class="fa-solid fa-pen-to-square"></i> Edit Portfolio
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="navbar-header" id="navbarHeader">
+        <div class="nav-container">
+            <a href="#" class="logo-link" id="logoLink">
+                <span class="logo-accent">&lt;</span>Harsh<span class="logo-accent">.Dev /&gt;</span>
+            </a>
+            
+            <nav class="nav-menu" id="navMenu">
+                <ul class="nav-list">
+                    <li><a href="#hero" class="nav-item active" id="navItemHero">Home</a></li>
+                    <li><a href="#about" class="nav-item" id="navItemAbout">About</a></li>
+                    <li><a href="#skills" class="nav-item" id="navItemSkills">Skills</a></li>
+                    <li><a href="#projects" class="nav-item" id="navItemProjects">Projects</a></li>
+                    <li><a href="#experience" class="nav-item" id="navItemExperience">Education</a></li>
+                    <li><a href="#contact" class="nav-item" id="navItemContact">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-actions">
+                <button class="theme-quick-toggle" id="themeQuickToggle" aria-label="Toggle Dark/Light Mode">
+                    <i class="fa-solid fa-moon" id="quickToggleIcon"></i>
+                </button>
+                <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Mobile Menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="greeting-badge animate-fade-in">
+                        <span class="badge-dot"></span> Available for Web & Mobile Development
+                    </div>
+                    <h1 class="hero-title animate-fade-in-up">
+                        Hi, I'm <span class="accent-text gradient-text">Harsh Patel</span>
+                    </h1>
+                    <h2 class="hero-subtitle animate-fade-in-up-delay">
+                        I am a <span class="typing-text" id="typingElement">Web Developer</span><span class="typing-cursor">|</span>
+                    </h2>
+                    <p class="hero-description animate-fade-in-up-delay-2">
+                        Developing secure backend systems and cross-platform mobile solutions. Seamlessly bridging structured databases with interactive, user-focused architectures.
+                    </p>
+                    <div class="hero-actions animate-fade-in-up-delay-3">
+                        <a href="#projects" class="btn btn-primary" id="heroBtnProjects">
+                            View My Work <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <a href="#contact" class="btn btn-secondary" id="heroBtnContact">
+                            Let's Talk <i class="fa-solid fa-comments"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="hero-visual animate-fade-in-scale">
+                    <div class="visual-blob-container">
+                        <div class="visual-blob"></div>
+                        <div class="visual-card glass">
+                            <div class="card-header">
+                                <span class="circle-btn red"></span>
+                                <span class="circle-btn yellow"></span>
+                                <span class="circle-btn green"></span>
+                            </div>
+                            <div class="card-body-code">
+                                <span class="code-line num-1"><span class="code-keyword">const</span> developer = {</span>
+                                <span class="code-line num-2">&nbsp;&nbsp;name: <span class="code-string">'Harsh Patel'</span>,</span>
+                                <span class="code-line num-3">&nbsp;&nbsp;skills: [<span class="code-string">'PHP'</span>, <span class="code-string">'Asp.Net'</span>, <span class="code-string">'Flutter'</span>],</span>
+                                <span class="code-line num-4">&nbsp;&nbsp;passion: <span class="code-string">'Backend & Mobile'</span>,</span>
+                                <span class="code-line num-5">&nbsp;&nbsp;performanceReady: <span class="code-literal">true</span></span>
+                                <span class="code-line num-6">};</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <a href="#about" class="scroll-indicator" aria-label="Scroll to About Section">
+                <span class="mouse-icon">
+                    <span class="wheel"></span>
+                </span>
+                <span class="scroll-text">Scroll Down</span>
+            </a>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about" class="about-section scroll-reveal">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="subtitle">01 / ABOUT ME</span>
+                    <h2 class="title">My Background & Core Focus</h2>
+                    <div class="section-divider"></div>
+                </div>
+                
+                <div class="about-grid">
+                    <div class="about-image-wrapper">
+                        <div class="image-border-glow"></div>
+                        <div class="image-inner">
+                            <img src="assets/avatar.png" alt="Executive avatar of Harsh Patel" id="aboutAvatar">
+                        </div>
+                    </div>
+                    
+                    <div class="about-content">
+                        <h3>Fusing backend engineering with responsive web & mobile design.</h3>
+                        <p>
+                            I am a dedicated Master of Computer Application (MCA) student with a solid foundation in web application and mobile development. I specialize in leveraging technologies like PHP, ASP.NET, and Flutter to build secure, robust backend systems and intuitive cross-platform user interfaces.
+                        </p>
+                        <p>
+                            With hands-on experience in database management (MySQL), backend scripting, and UI/UX prototyping (Figma), I strive to create highly efficient, scalable solutions that solve real-world problems and deliver seamless user experiences.
+                        </p>
+                        
+                        <div class="stats-counter-grid">
+                            <div class="stat-card glass" id="statCardExperience">
+                                <div class="stat-num" data-val="4">0</div>
+                                <div class="stat-label">Qualifications</div>
+                            </div>
+                            <div class="stat-card glass" id="statCardProjects">
+                                <div class="stat-num" data-val="5">0</div>
+                                <div class="stat-label">Core Projects</div>
+                            </div>
+                            <div class="stat-card glass" id="statCardClients">
+                                <div class="stat-num" data-val="100">0</div>
+                                <div class="stat-label">Commitment %</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="skills-section scroll-reveal">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="subtitle">02 / EXPERTISE</span>
+                    <h2 class="title">My Technical Toolkit</h2>
+                    <div class="section-divider"></div>
+                </div>
+                
+                <div class="skills-grid">
+                    <!-- Column 1: Frontend & UI -->
+                    <div class="skills-column glass">
+                        <div class="column-header">
+                            <i class="fa-solid fa-code icon-tech"></i>
+                            <h3>Frontend & UI</h3>
+                        </div>
+                        <div class="skills-list">
+                            <div class="skill-bar-wrapper">
+                                <div class="skill-info">
+                                    <span>HTML5 & CSS3</span>
+                                    <span>95%</span>
+                                </div>
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill" data-progress="95%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-bar-wrapper">
+                                <div class="skill-info">
+                                    <span>JavaScript & jQuery</span>
+                                    <span>90%</span>
+                                </div>
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill" data-progress="90%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-bar-wrapper">
+                                <div class="skill-info">
+                                    <span>Bootstrap Framework</span>
+                                    <span>85%</span>
+                                </div>
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill" data-progress="85%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-bar-wrapper">
+                                <div class="skill-info">
+                                    <span>UI/UX Prototyping (Figma)</span>
+                                    <span>80%</span>
+                                </div>
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill" data-progress="80%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Column 2: Backend & Database -->
+                    <div class="skills-column glass">
+                        <div class="column-header">
+                            <i class="fa-solid fa-server icon-tech"></i>
+                            <h3>Backend & Database</h3>
+                        </div>
+                        <div class="skills-list">
+                            <div class="skill-bar-wrapper">
+                                <div class="skill-info">
+                                    <span>PHP Scripting</span>
+                                    <span>95%</span>
+                                </div>
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill" data-progress="95%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-bar-wrapper">
+                                <div class="skill-info">
+                                    <span>MySQL Database</span>
+                                    <span>90%</span>
+                                </div>
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill" data-progress="90%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-bar-wrapper">
+                                <div class="skill-info">
+                                    <span>ASP.NET (C#)</span>
+                                    <span>80%</span>
+                                </div>
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill" data-progress="80%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-bar-wrapper">
+                                <div class="skill-info">
+                                    <span>VB.NET / Core</span>
+                                    <span>75%</span>
+                                </div>
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill" data-progress="75%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Column 3: Programming & Mobile (Flutter) -->
+                    <div class="skills-column glass">
+                        <div class="column-header">
+                            <i class="fa-solid fa-mobile-screen-button icon-tech"></i>
+                            <h3>Programming & Mobile</h3>
+                        </div>
+                        <div class="skills-list">
+                            <div class="skill-bar-wrapper">
+                                <div class="skill-info">
+                                    <span>Flutter & Dart</span>
+                                    <span>85%</span>
+                                </div>
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill" data-progress="85%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-bar-wrapper">
+                                <div class="skill-info">
+                                    <span>C / C++ Language</span>
+                                    <span>80%</span>
+                                </div>
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill" data-progress="80%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-bar-wrapper">
+                                <div class="skill-info">
+                                    <span>C# Language</span>
+                                    <span>85%</span>
+                                </div>
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill" data-progress="85%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-bar-wrapper">
+                                <div class="skill-info">
+                                    <span>Git Version Control</span>
+                                    <span>88%</span>
+                                </div>
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill" data-progress="88%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Column 4: Linguistic Languages -->
+                    <div class="skills-column glass">
+                        <div class="column-header">
+                            <i class="fa-solid fa-language icon-tech"></i>
+                            <h3>Languages</h3>
+                        </div>
+                        <div class="skills-list">
+                            <div class="skill-bar-wrapper">
+                                <div class="skill-info">
+                                    <span>Gujarati</span>
+                                    <span>100%</span>
+                                </div>
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill" data-progress="100%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-bar-wrapper">
+                                <div class="skill-info">
+                                    <span>Hindi</span>
+                                    <span>100%</span>
+                                </div>
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill" data-progress="100%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-bar-wrapper">
+                                <div class="skill-info">
+                                    <span>English</span>
+                                    <span>60%</span>
+                                </div>
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill" data-progress="60%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects-section scroll-reveal">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="subtitle">03 / CREATIVE WORK</span>
+                    <h2 class="title">Academic Projects Showcase</h2>
+                    <div class="section-divider"></div>
+                </div>
+
+                <!-- Projects Filter Bar -->
+                <div class="projects-filter">
+                    <button class="filter-btn active" data-filter="all">All Projects</button>
+                    <button class="filter-btn" data-filter="fullstack">Full-Stack</button>
+                    <button class="filter-btn" data-filter="web">Web Apps</button>
+                </div>
+
+                <!-- Projects Grid -->
+                <div class="projects-grid" id="projectsGrid">
+                    
+                    <!-- Project 1: Hostello -->
+                    <div class="project-card glass" data-category="fullstack" data-project-id="1">
+                        <div class="project-image">
+                            <img src="assets/project1.jpg" alt="Hostello Hostel Management System Dashboard Mockup">
+                            <div class="project-hover-overlay">
+                                <span class="btn-view-details">Explore System Details <i class="fa-solid fa-up-right-from-square"></i></span>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <span class="project-tag">Full-Stack / Web Application</span>
+                            <h3>Hostello — Online Hostel Management</h3>
+                            <p>A comprehensive system to streamline hostel operations. Featuring a custom PHP and MySQL backend for dynamic room and student allocations, local JSON file feeds for static content, and a responsive Bootstrap-based administration dashboard.</p>
+                            <div class="project-tech-tags">
+                                <span>PHP</span>
+                                <span>MySQL</span>
+                                <span>Bootstrap</span>
+                                <span>JavaScript</span>
+                                <span>JSON</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2: Real Bus -->
+                    <div class="project-card glass" data-category="web" data-project-id="2">
+                        <div class="project-image">
+                            <img src="assets/project2.jpg" alt="Real Bus Booking System Dashboard Mockup">
+                            <div class="project-hover-overlay">
+                                <span class="btn-view-details">Explore System Details <i class="fa-solid fa-up-right-from-square"></i></span>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <span class="project-tag">Backend & Design</span>
+                            <h3>Real Bus — Ticket Booking System</h3>
+                            <p>An online ticketing platform built using PHP and MySQL database structures. Facilitates seat selections, booking logs, and passenger schedule lookups with an intuitive administrative UI template.</p>
+                            <div class="project-tech-tags">
+                                <span>PHP</span>
+                                <span>MySQL</span>
+                                <span>HTML5</span>
+                                <span>Vanilla CSS</span>
+                                <span>UI Design</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Details Modal (Reusable Glassmorphic Popup) -->
+        <div class="project-modal" id="projectModal">
+            <div class="modal-overlay" id="modalOverlay"></div>
+            <div class="modal-wrapper glass">
+                <button class="modal-close" id="modalCloseBtn" aria-label="Close modal">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+                <div class="modal-content-scroll">
+                    <div class="modal-grid">
+                        <div class="modal-media">
+                            <img src="" alt="Active Project Media" id="modalImg">
+                        </div>
+                        <div class="modal-details">
+                            <span class="project-tag" id="modalTag">Category</span>
+                            <h3 id="modalTitle">Project Title</h3>
+                            <p class="modal-description" id="modalDesc">Detailed description about this project. Explaining the architectural goals, technology choices, and performance optimization details.</p>
+                            
+                            <div class="modal-info-block">
+                                <h4>Key Architecture & Features</h4>
+                                <ul class="modal-highlights" id="modalHighlights">
+                                    <li>Interactive dynamic UI using optimized components.</li>
+                                    <li>Sub-150ms visual response to complex animations.</li>
+                                    <li>98+ LightHouse SEO & Accessibility audit score.</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="modal-actions">
+                                <a href="#" target="_blank" class="btn btn-primary" id="modalDemoLink">
+                                    Launch Demo <i class="fa-solid fa-external-link"></i>
+                                </a>
+                                <a href="#" target="_blank" class="btn btn-secondary" id="modalCodeLink">
+                                    GitHub Code <i class="fa-solid fa-code"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Credential Authorization Modal for Edit Mode -->
+        <div class="project-modal" id="editLoginModal" style="display: none;">
+            <div class="modal-overlay" id="editLoginOverlay"></div>
+            <div class="modal-wrapper glass" style="max-width: 400px; padding: 40px; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
+                <button class="modal-close" id="editLoginCloseBtn" aria-label="Close modal">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+                <div style="text-align: center; margin-bottom: 25px;">
+                    <i class="fa-solid fa-lock" style="font-size: 2.5rem; color: var(--accent); margin-bottom: 15px;"></i>
+                    <h3 style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800;">Authorize Editor</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 5px;">Enter credentials to unlock editing features</p>
+                </div>
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <input type="text" id="editUsername" class="form-input" required placeholder=" ">
+                    <label for="editUsername" class="form-label">Username</label>
+                </div>
+                <div class="form-group" style="margin-bottom: 25px;">
+                    <input type="password" id="editPassword" class="form-input" required placeholder=" ">
+                    <label for="editPassword" class="form-label">Password</label>
+                </div>
+                <div id="editLoginError" style="display: none; color: #ef4444; font-size: 0.85rem; font-weight: 500; text-align: center; margin-bottom: 15px;">
+                    <i class="fa-solid fa-circle-exclamation"></i> Invalid username or password!
+                </div>
+                <button class="btn btn-primary" id="submitEditLoginBtn" style="width: 100%;">
+                    Unlock Features <i class="fa-solid fa-unlock"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Experience Timeline Section (Converted to Education Timeline) -->
+        <section id="experience" class="experience-section scroll-reveal">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="subtitle">04 / TIMELINE</span>
+                    <h2 class="title">Education & Academic Journey</h2>
+                    <div class="section-divider"></div>
+                </div>
+
+                <div class="timeline">
+                    <div class="timeline-line"></div>
+                    
+                    <!-- Item 1: MCA -->
+                    <div class="timeline-item left">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-card glass">
+                            <span class="timeline-date">Aug 2024 - Present</span>
+                            <h3>Master of Computer Application (MCA)</h3>
+                            <h4 class="timeline-company">Kadi Sarva Vishwavidyalaya University, Gandhinagar</h4>
+                            <p>Deepening expertise in advanced software engineering principles, enterprise web application design, database structures, and dynamic mobile application models. Currently pursuing with dedicated focus.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 2: BCA -->
+                    <div class="timeline-item right">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-card glass">
+                            <span class="timeline-date">Jul 2021 - Apr 2024</span>
+                            <h3>Bachelor of Computer Application (BCA)</h3>
+                            <h4 class="timeline-company">Kadi Sarva Vishwavidyalaya University, Gandhinagar</h4>
+                            <p>Specialization in E-Commerce. Focused on software development basics, database administrations, and business analytics workflows. Graduated with a CGPA of 7.42 (69.20%).</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 3: 12th Grade -->
+                    <div class="timeline-item left">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-card glass">
+                            <span class="timeline-date">Jun 2020 - Mar 2021</span>
+                            <h3>Higher Secondary School (12th)</h3>
+                            <h4 class="timeline-company">Shree P G Maheta High School, Malpur</h4>
+                            <p>Completed higher secondary education focusing on logical studies, math foundation, and analytical skillsets. Secured 47.00% aggregate score.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 4: 10th Grade -->
+                    <div class="timeline-item right">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-card glass">
+                            <span class="timeline-date">Jun 2018 - Mar 2019</span>
+                            <h3>Secondary School (10th)</h3>
+                            <h4 class="timeline-company">Shree K N Shah Modasa High School, Modasa</h4>
+                            <p>Acquired basic foundational education in sciences, mathematics, and computing logic. Graduated with 50.00% aggregate score.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section scroll-reveal">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="subtitle">05 / GET IN TOUCH</span>
+                    <h2 class="title">Let's Create Something Great</h2>
+                    <div class="section-divider"></div>
+                </div>
+
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h3>Have a project in mind, or just want to chat?</h3>
+                        <p>Feel free to reach out. I am always open to discussing new digital creations, responsive products, code performance, or standard design processes.</p>
+                        
+                        <div class="contact-methods">
+                            <div class="contact-method-item">
+                                <div class="icon-circle">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
+                                <div class="item-text">
+                                    <span>Write Me An Email</span>
+                                    <a href="mailto:tech.harshpatel@gmail.com">tech.harshpatel@gmail.com</a>
+                                </div>
+                            </div>
+                            <div class="contact-method-item">
+                                <div class="icon-circle">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                                <div class="item-text">
+                                    <span>Call / Message</span>
+                                    <a href="tel:+917202098020">+91 72020 98020</a>
+                                </div>
+                            </div>
+                            <div class="contact-method-item">
+                                <div class="icon-circle">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div class="item-text">
+                                    <span>Location</span>
+                                    <span>Nava Naroda, Ahmedabad 382330</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="social-links-container">
+                            <a href="#" class="social-icon-btn" aria-label="LinkedIn Profiles"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="#" class="social-icon-btn" aria-label="GitHub Repositories"><i class="fa-brands fa-github"></i></a>
+                            <a href="#" class="social-icon-btn" aria-label="Twitter Profiles"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#" class="social-icon-btn" aria-label="Dribbble Designs"><i class="fa-brands fa-dribbble"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-container glass">
+                        <form id="contactForm" novalidate>
+                            <div class="form-group">
+                                <input type="text" id="contactName" class="form-input" required placeholder=" ">
+                                <label for="contactName" class="form-label">Full Name</label>
+                                <span class="error-msg" id="nameError">Name must contain at least 2 characters.</span>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="email" id="contactEmail" class="form-input" required placeholder=" ">
+                                <label for="contactEmail" class="form-label">Email Address</label>
+                                <span class="error-msg" id="emailError">Please provide a valid email address.</span>
+                            </div>
+
+                            <div class="form-group">
+                                <textarea id="contactMessage" class="form-input textarea" required placeholder=" "></textarea>
+                                <label for="contactMessage" class="form-label">Your Message</label>
+                                <span class="error-msg" id="messageError">Message must contain at least 10 characters.</span>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-submit" id="formSubmitBtn">
+                                Send Message <i class="fa-solid fa-paper-plane"></i>
+                            </button>
+                        </form>
+
+                        <!-- Contact Success Popup Overlay -->
+                        <div class="form-success-overlay" id="formSuccessOverlay">
+                            <div class="success-content">
+                                <div class="success-icon-circle">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                                <h3>Message Sent!</h3>
+                                <p>Thank you so much. I have received your message and will get back to you within 24 hours.</p>
+                                <button class="btn btn-primary btn-close-success" id="closeSuccessBtn">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-section">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <span class="logo-accent">&lt;</span>Harsh<span class="logo-accent">.Dev /&gt;</span>
+            </div>
+            
+            <p class="footer-copyright">
+                &copy; 2026 Harsh Patel. All Rights Reserved. Crafted with passion, HTML, Vanilla CSS & Vanilla JS.
+            </p>
+
+            <a href="#" class="back-to-top" id="backToTopBtn" aria-label="Scroll back to top">
+                <i class="fa-solid fa-arrow-up"></i>
+            </a>
+        </div>
+    </footer>
+    
+    <!-- Edit Mode Login Modal -->
+    <div class="project-modal" id="editLoginModal">
+        <div class="modal-overlay" id="editLoginOverlay"></div>
+        <div class="modal-wrapper glass" style="max-width:420px; padding:40px 36px; border-radius:24px; z-index:1000001; text-align:center;">
+            <button class="modal-close" id="editLoginCloseBtn" aria-label="Close">
+                <i class="fa-solid fa-times"></i>
+            </button>
+            <div style="margin-bottom:24px;">
+                <div style="width:60px;height:60px;background:linear-gradient(135deg,var(--accent-primary),var(--accent-secondary));border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+                    <i class="fa-solid fa-pen-to-square" style="font-size:1.4rem;color:#fff;"></i>
+                </div>
+                <h3 style="font-family:var(--font-heading);font-size:1.5rem;font-weight:800;margin-bottom:6px;">Portfolio Editor</h3>
+                <p style="font-size:0.85rem;color:var(--text-secondary);">Enter credentials to unlock Edit Mode</p>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:14px;text-align:left;">
+                <div>
+                    <label style="font-size:0.8rem;font-weight:600;color:var(--text-secondary);display:block;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.05em;">Username</label>
+                    <input type="text" id="editUsername" placeholder="Enter username"
+                        style="width:100%;box-sizing:border-box;padding:13px 18px;border-radius:12px;border:1px solid var(--glass-border);background:rgba(255,255,255,0.05);color:var(--text-primary);font-size:0.95rem;font-family:var(--font-body);outline:none;transition:border 0.2s;"
+                        autocomplete="off">
+                </div>
+                <div>
+                    <label style="font-size:0.8rem;font-weight:600;color:var(--text-secondary);display:block;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.05em;">Password</label>
+                    <input type="password" id="editPassword" placeholder="Enter password"
+                        style="width:100%;box-sizing:border-box;padding:13px 18px;border-radius:12px;border:1px solid var(--glass-border);background:rgba(255,255,255,0.05);color:var(--text-primary);font-size:0.95rem;font-family:var(--font-body);outline:none;transition:border 0.2s;"
+                        autocomplete="off">
+                </div>
+                <p id="editLoginError" style="display:none;color:#ff4d6d;font-size:0.82rem;font-weight:600;text-align:center;padding:8px 12px;background:rgba(255,77,109,0.1);border-radius:8px;">
+                    <i class="fa-solid fa-circle-exclamation"></i> Incorrect credentials. Please try again.
+                </p>
+                <button class="btn btn-primary" id="submitEditLoginBtn" style="width:100%;margin-top:6px;padding:14px;font-size:0.95rem;">
+                    <i class="fa-solid fa-unlock"></i> Unlock Editor
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Core Script -->
+    <script src="script.js"></script>
+</body>
+</html>
