@@ -1,46 +1,23 @@
 /* ==========================================================================
-   PREMIUM PORTFOLIO INTERACTIVE LOGIC
-   Description: Dynamic theme customizer, high-performance canvas particle 
-                background, typing subtitle, scroll animations, project modal,
-                and contact form validation.
+   PORTFOLIO CONFIGURATION DATA
+   This block holds the editable content of the site. It is updated and saved.
    ========================================================================== */
-
-document.addEventListener("DOMContentLoaded", () => {
-    
-    /* --------------------------------------------------------------------------
-       1. GLOBAL DOM REFERENCES & STATE
-       -------------------------------------------------------------------------- */
-    const body = document.body;
-    
-    // Configurator DOM elements
-    const configPanel = document.getElementById("configPanel");
-    const configToggle = document.getElementById("configToggle");
-    const darkModeBtn = document.getElementById("darkModeBtn");
-    const lightModeBtn = document.getElementById("lightModeBtn");
-    const accentDots = document.querySelectorAll(".accent-dot");
-    const particlesBgBtn = document.getElementById("particlesBgBtn");
-    const gradientBgBtn = document.getElementById("gradientBgBtn");
-    const themeQuickToggle = document.getElementById("themeQuickToggle");
-    const quickToggleIcon = document.getElementById("quickToggleIcon");
-
-    // Nav Header DOM elements
-    const navbarHeader = document.getElementById("navbarHeader");
-    const navItems = document.querySelectorAll(".nav-item");
-    const mobileToggle = document.getElementById("mobileToggle");
-    const navMenu = document.getElementById("navMenu");
-
-    // Dynamic Typing
-    const typingElement = document.getElementById("typingElement");
-    const rolesAttr = document.body.getAttribute("data-roles");
-    const roles = rolesAttr ? JSON.parse(rolesAttr) : ["Web Developer", "Backend Developer", "Flutter Developer", "MCA Student"];
-    let roleIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    let typingSpeed = 100;
-
-    // Projects Grid Database for Modals
-    const projectsAttr = document.body.getAttribute("data-projects");
-    const projectsData = projectsAttr ? JSON.parse(projectsAttr) : {
+const PORTFOLIO_DATA = {
+    heroTitle: "Hi, I'm <span class=\"accent-text gradient-text\">Harsh Patel</span>",
+    heroBadge: "<span class=\"badge-dot\"></span> Available for Web & Mobile Development",
+    heroDesc: "Developing secure backend systems and cross-platform mobile solutions. Seamlessly bridging structured databases with interactive, user-focused architectures.",
+    aboutTitle: "Fusing backend engineering with responsive web & mobile design.",
+    aboutDesc1: "I am a dedicated Master of Computer Application (MCA) student with a solid foundation in web application and mobile development. I specialize in leveraging technologies like PHP, ASP.NET, and Flutter to build secure, robust backend systems and intuitive cross-platform user interfaces.",
+    aboutDesc2: "With hands-on experience in database management (MySQL), backend scripting, and UI/UX prototyping (Figma), I strive to create highly efficient, scalable solutions that solve real-world problems and deliver seamless user experiences.",
+    contactTitle: "Have a project in mind, or just want to chat?",
+    contactDesc: "Feel free to reach out. I am always open to discussing new digital creations, responsive products, code performance, or standard design processes.",
+    roles: [
+        "Web Developer",
+        "Backend Developer",
+        "Flutter Developer",
+        "MCA Student"
+    ],
+    projects: {
         "1": {
             title: "Hostello — Online Hostel Management",
             tag: "Full-Stack / Web Application",
@@ -82,7 +59,66 @@ document.addEventListener("DOMContentLoaded", () => {
             demo: "#",
             code: "#"
         }
+    }
+};
+
+/* ==========================================================================
+   PREMIUM PORTFOLIO INTERACTIVE LOGIC
+   Description: Dynamic theme customizer, high-performance canvas particle 
+                background, typing subtitle, scroll animations, project modal,
+                and contact form validation.
+   ========================================================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+    
+    /* --------------------------------------------------------------------------
+       1. GLOBAL DOM REFERENCES & STATE
+       -------------------------------------------------------------------------- */
+    const body = document.body;
+    
+    // Configurator DOM elements
+    const configPanel = document.getElementById("configPanel");
+    const configToggle = document.getElementById("configToggle");
+    const darkModeBtn = document.getElementById("darkModeBtn");
+    const lightModeBtn = document.getElementById("lightModeBtn");
+    const accentDots = document.querySelectorAll(".accent-dot");
+    const particlesBgBtn = document.getElementById("particlesBgBtn");
+    const gradientBgBtn = document.getElementById("gradientBgBtn");
+    const themeQuickToggle = document.getElementById("themeQuickToggle");
+    const quickToggleIcon = document.getElementById("quickToggleIcon");
+
+    // Nav Header DOM elements
+    const navbarHeader = document.getElementById("navbarHeader");
+    const navItems = document.querySelectorAll(".nav-item");
+    const mobileToggle = document.getElementById("mobileToggle");
+    const navMenu = document.getElementById("navMenu");
+
+    // Dynamic Typing
+    const typingElement = document.getElementById("typingElement");
+    const rolesAttr = document.body.getAttribute("data-roles");
+    const roles = rolesAttr ? JSON.parse(rolesAttr) : PORTFOLIO_DATA.roles;
+    let roleIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typingSpeed = 100;
+
+    // Projects Grid Database for Modals
+    const projectsAttr = document.body.getAttribute("data-projects");
+    const projectsData = projectsAttr ? JSON.parse(projectsAttr) : PORTFOLIO_DATA.projects;
+
+    /* --------------------------------------------------------------------------
+       DYNAMIC CONTENT INITIALIZATION
+       -------------------------------------------------------------------------- */
+    const initContentFromData = () => {
+        Object.keys(PORTFOLIO_DATA).forEach(key => {
+            if (key === 'roles' || key === 'projects') return;
+            const elements = document.querySelectorAll(`[data-field="${key}"]`);
+            elements.forEach(el => {
+                el.innerHTML = PORTFOLIO_DATA[key];
+            });
+        });
     };
+    initContentFromData();
 
     /* --------------------------------------------------------------------------
        2. LOCAL STORAGE INTEGRATION (PREFERENCES PERSISTENCE)
@@ -723,9 +759,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const startEditMode = () => {
         isEditMode = true;
         body.classList.add("edit-mode-active");
-
-        document.body.setAttribute("data-roles", JSON.stringify(roles));
-        document.body.setAttribute("data-projects", JSON.stringify(projectsData));
 
         createEditorToolbar();
         enableEditableElements();
@@ -1883,8 +1916,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     };
 
-    // Serialize DOM, remove editor classes/wrappers, and prompt download of updated index.html
-    const savePortfolioHTML = () => {
+    // Serialize DOM, extract JS data, and prompt download of updated script.js and index.html
+    const savePortfolioHTML = async () => {
         // Clone document to strip builder tools cleanly
         const cloneDoc = document.cloneNode(true);
         const cloneBody = cloneDoc.body;
@@ -1912,11 +1945,41 @@ document.addEventListener("DOMContentLoaded", () => {
             el.style.display = "none";
         });
 
+        // 4. Update JS Data config and fetch script.js
+        const updatedData = { ...PORTFOLIO_DATA };
+        document.querySelectorAll("[data-field]").forEach(el => {
+            updatedData[el.getAttribute("data-field")] = el.innerHTML;
+        });
+        updatedData.roles = roles;
+        updatedData.projects = projectsData;
+
+        try {
+            const res = await fetch("script.js");
+            let scriptText = await res.text();
+            
+            // Replace PORTFOLIO_DATA in text
+            const jsonStr = JSON.stringify(updatedData, null, 4);
+            const regex = /const PORTFOLIO_DATA = \{[\s\S]*?\};\n/;
+            scriptText = scriptText.replace(regex, `const PORTFOLIO_DATA = ${jsonStr};\n`);
+
+            const jsBlob = new Blob([scriptText], { type: "application/javascript" });
+            const jsUrl = URL.createObjectURL(jsBlob);
+            const jsLink = document.createElement("a");
+            jsLink.href = jsUrl;
+            jsLink.download = "script.js";
+            document.body.appendChild(jsLink);
+            jsLink.click();
+            document.body.removeChild(jsLink);
+            URL.revokeObjectURL(jsUrl);
+        } catch(e) {
+            console.error("Error fetching or saving script.js", e);
+        }
+
         // Serialize back to HTML string
         const doctypeString = "<!DOCTYPE html>\n";
         const completeHTML = doctypeString + cloneDoc.documentElement.outerHTML;
 
-        // Trigger file download
+        // Trigger HTML file download
         const blob = new Blob([completeHTML], { type: "text/html" });
         const downloadUrl = URL.createObjectURL(blob);
         const downloadLink = document.createElement("a");
@@ -1928,7 +1991,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.removeChild(downloadLink);
         URL.revokeObjectURL(downloadUrl);
 
-        showAlert("Save complete! The modified 'index.html' file has been downloaded. Copy it into your project folder to replace the original.");
+        showAlert("Save complete! The modified 'index.html' and 'script.js' files have been downloaded. Replace them in your code folder.");
     };
 
     // Run preferences startup
