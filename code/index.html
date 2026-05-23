@@ -411,6 +411,7 @@
                     <button class="filter-btn active" data-filter="all">All Projects</button>
                     <button class="filter-btn" data-filter="fullstack">Full-Stack</button>
                     <button class="filter-btn" data-filter="web">Web Apps</button>
+                    <button class="filter-btn" data-filter="mobile">Mobile</button>
                 </div>
 
                 <!-- Projects Grid -->
@@ -460,6 +461,27 @@
                         </div>
                     </div>
 
+                    <!-- Project 3: Flutter App -->
+                    <div class="project-card glass" data-category="mobile" data-project-id="3">
+                        <div class="project-image">
+                            <img src="assets/project3.jpg" alt="Flutter Mobile Application Project Mockup">
+                            <div class="project-hover-overlay">
+                                <span class="btn-view-details">Explore System Details <i class="fa-solid fa-up-right-from-square"></i></span>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <span class="project-tag">Mobile / Cross-Platform</span>
+                            <h3>Flutter Mobile Application</h3>
+                            <p>A cross-platform mobile application built with Flutter and Dart. Delivers a seamless native experience on both Android and iOS with a beautiful, responsive UI and smooth animations.</p>
+                            <div class="project-tech-tags">
+                                <span>Flutter</span>
+                                <span>Dart</span>
+                                <span>Firebase</span>
+                                <span>Material UI</span>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -504,34 +526,6 @@
             </div>
         </div>
 
-        <!-- Credential Authorization Modal for Edit Mode -->
-        <div class="project-modal" id="editLoginModal" style="display: none;">
-            <div class="modal-overlay" id="editLoginOverlay"></div>
-            <div class="modal-wrapper glass" style="max-width: 400px; padding: 40px; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
-                <button class="modal-close" id="editLoginCloseBtn" aria-label="Close modal">
-                    <i class="fa-solid fa-times"></i>
-                </button>
-                <div style="text-align: center; margin-bottom: 25px;">
-                    <i class="fa-solid fa-lock" style="font-size: 2.5rem; color: var(--accent); margin-bottom: 15px;"></i>
-                    <h3 style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800;">Authorize Editor</h3>
-                    <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 5px;">Enter credentials to unlock editing features</p>
-                </div>
-                <div class="form-group" style="margin-bottom: 20px;">
-                    <input type="text" id="editUsername" class="form-input" required placeholder=" ">
-                    <label for="editUsername" class="form-label">Username</label>
-                </div>
-                <div class="form-group" style="margin-bottom: 25px;">
-                    <input type="password" id="editPassword" class="form-input" required placeholder=" ">
-                    <label for="editPassword" class="form-label">Password</label>
-                </div>
-                <div id="editLoginError" style="display: none; color: #ef4444; font-size: 0.85rem; font-weight: 500; text-align: center; margin-bottom: 15px;">
-                    <i class="fa-solid fa-circle-exclamation"></i> Invalid username or password!
-                </div>
-                <button class="btn btn-primary" id="submitEditLoginBtn" style="width: 100%;">
-                    Unlock Features <i class="fa-solid fa-unlock"></i>
-                </button>
-            </div>
-        </div>
 
         <!-- Experience Timeline Section (Converted to Education Timeline) -->
         <section id="experience" class="experience-section scroll-reveal">

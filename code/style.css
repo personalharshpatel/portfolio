@@ -2146,6 +2146,78 @@ section.editor-container-parent .editor-control-btn:hover {
     color: #ffffff !important;
 }
 
+.editor-control-btn-add {
+    background: rgba(16, 185, 129, 0.15) !important;
+    color: #10b981 !important;
+    font-weight: 700;
+}
+
+.editor-control-btn-add:hover {
+    background: #10b981 !important;
+    color: #ffffff !important;
+}
+
+/* ==========================================================================
+   SECTION ADD BARS — Edit Mode only, never visible on live site
+   ========================================================================== */
+.section-add-bar {
+    width: 100%;
+    padding: 10px 0 4px;
+    display: flex;
+    justify-content: center;
+    /* spans the full column of the parent grid */
+    grid-column: 1 / -1;
+    animation: addBarFadeIn 0.35s ease both;
+}
+
+@keyframes addBarFadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.section-add-bar-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 28px;
+    border: 2px dashed rgba(var(--accent-rgb), 0.4);
+    border-radius: 50px;
+    background: rgba(var(--accent-rgb), 0.04);
+    color: var(--accent);
+    font-family: var(--font-heading);
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.03em;
+    transition: all 0.25s cubic-bezier(0.1, 0.8, 0.25, 1);
+    white-space: nowrap;
+}
+
+.section-add-bar-btn:hover {
+    border-color: var(--accent);
+    background: rgba(var(--accent-rgb), 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(var(--accent-rgb), 0.2);
+}
+
+.section-add-bar-icon {
+    width: 26px;
+    height: 26px;
+    background: rgba(var(--accent-rgb), 0.12);
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.78rem;
+    transition: background 0.2s, transform 0.25s;
+}
+
+.section-add-bar-btn:hover .section-add-bar-icon {
+    background: var(--accent);
+    color: #fff;
+    transform: rotate(90deg) scale(1.1);
+}
+
 /* Hidden elements styles */
 body.edit-mode-active .editor-element-hidden {
     opacity: 0.4 !important;
@@ -2201,4 +2273,131 @@ body:not(.edit-mode-active) .editor-element-hidden {
 
 #editLoginModal .modal-wrapper {
     z-index: 99999 !important;
+}
+
+/* ==========================================================================
+   17. ADD PROJECT CARD ( + ) — Edit Mode
+   ========================================================================== */
+.add-project-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 320px;
+    border-radius: 20px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    border: 2px dashed rgba(var(--accent-rgb), 0.35) !important;
+    background: rgba(var(--accent-rgb), 0.03) !important;
+    transition: all 0.3s cubic-bezier(0.1, 0.8, 0.25, 1);
+    animation: addCardFadeIn 0.4s cubic-bezier(0.1, 0.8, 0.25, 1) both;
+}
+
+@keyframes addCardFadeIn {
+    from { opacity: 0; transform: scale(0.92); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+.add-project-card:hover {
+    border-color: var(--accent) !important;
+    background: rgba(var(--accent-rgb), 0.07) !important;
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(var(--accent-rgb), 0.2);
+}
+
+.add-project-card-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    user-select: none;
+}
+
+.add-project-card-inner span {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.03em;
+    opacity: 0.85;
+    transition: opacity 0.2s;
+}
+
+.add-project-card:hover .add-project-card-inner span {
+    opacity: 1;
+}
+
+.add-project-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: rgba(var(--accent-rgb), 0.1);
+    border: 2px solid rgba(var(--accent-rgb), 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    color: var(--accent);
+    transition: all 0.3s cubic-bezier(0.1, 0.8, 0.25, 1);
+    position: relative;
+}
+
+/* Pulse ring animation */
+.add-project-icon::before {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 2px solid rgba(var(--accent-rgb), 0.2);
+    animation: addIconPulse 2s ease-in-out infinite;
+}
+
+@keyframes addIconPulse {
+    0%, 100% { transform: scale(1); opacity: 0.6; }
+    50%       { transform: scale(1.12); opacity: 0; }
+}
+
+.add-project-card:hover .add-project-icon {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #ffffff;
+    transform: scale(1.08) rotate(90deg);
+    box-shadow: 0 0 25px rgba(var(--accent-rgb), 0.5);
+}
+
+/* ==========================================================================
+   18. IMAGE EDIT HINT — Edit Mode
+   ========================================================================== */
+
+/* "Click to change image" tooltip badge on images in edit mode */
+body.edit-mode-active .project-image,
+body.edit-mode-active .about-image-wrapper {
+    position: relative;
+}
+
+body.edit-mode-active .project-image::after,
+body.edit-mode-active .about-image-wrapper::after {
+    content: '\f030\00a0 Click to change image';
+    font-family: 'Font Awesome 6 Free', var(--font-heading);
+    font-weight: 900;
+    font-size: 0.72rem;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(var(--accent-rgb), 0.92);
+    color: #fff;
+    padding: 5px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.25s;
+    z-index: 5;
+    letter-spacing: 0.03em;
+}
+
+body.edit-mode-active .project-image:hover::after,
+body.edit-mode-active .about-image-wrapper:hover::after {
+    opacity: 1;
 }
